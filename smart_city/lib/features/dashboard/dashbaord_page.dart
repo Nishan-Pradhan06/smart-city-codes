@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_city/features/camera/camera.dart';
 import 'package:smart_city/features/smart_parking/smart_parking_page.dart';
 
 import '../../core/widgets/app_bar.dart';
@@ -118,14 +119,13 @@ class DashboardScreen extends StatelessWidget {
                 title: 'Traffic Management',
                 subtitle: '12 incidents reported',
                 statusColor: const Color(0xFFEF5350),
-               
               ),
               ServiceTile(
                 icon: Icons.local_parking,
                 title: 'Smart Parking',
                 subtitle: 'All zones operational',
                 statusColor: const Color(0xFF66BB6A),
-               
+
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => ParkingLotScreen()),
                 ),
@@ -135,21 +135,29 @@ class DashboardScreen extends StatelessWidget {
                 title: 'Waste Collection',
                 subtitle: 'Next pickup: Tomorrow',
                 statusColor: const Color(0xFFFFCA28),
-               
               ),
               ServiceTile(
                 icon: Icons.local_hospital_outlined,
                 title: 'Emergency Services',
                 subtitle: '6 units on standby',
                 statusColor: const Color(0xFF66BB6A),
-                
               ),
               ServiceTile(
                 icon: Icons.wb_sunny_outlined,
                 title: 'Smart Lighting',
                 subtitle: '4,821 / 5,000 active',
                 statusColor: const Color(0xFF29B6F6),
-               
+              ),
+              ServiceTile(
+                icon: Icons.wb_sunny_outlined,
+                title: 'Camera Surveillance',
+                subtitle: '4,821 / 5,000 active',
+                statusColor: const Color(0xFF29B6F6),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => CameraScreen()),
+                  );
+                },
               ),
               const SizedBox(height: 24),
             ]),
