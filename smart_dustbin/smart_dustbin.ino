@@ -1,57 +1,49 @@
 #include <Servo.h>
 
 #define TRIG_PIN 5
-#define ECHO_PIN 6
-#define SERVO_PIN 9
+#define ECHO_PIN 18
+#define SERVO_PIN 13
 
-Servo dustbinServo;
+Servo myServo;
 
 long duration;
 int distance;
 
 void setup() {
+  Serial.begin(115200);
+
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
 
-  dustbinServo.attach(SERVO_PIN);
-
-  // Lid closed initially
-  dustbinServo.write(0);
-
-  Serial.begin(9600);
+  myServo.attach(SERVO_PIN);
+  myServo.write(0); // lid closed
 }
 
-void loop() {
-
-  // Send ultrasonic wave
+int getDistance() {
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
 
   digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10);
-
   digitalWrite(TRIG_PIN, LOW);
 
-  // Read echo
   duration = pulseIn(ECHO_PIN, HIGH);
-
-  // Calculate distance
   distance = duration * 0.034 / 2;
 
-  Serial.print("Distance: ");
-  Serial.println(distance);
+  return distance;
+}
 
-  // If hand detected within 20 cm
-  if (distance > 0 && distance <= 20) {
+void loop() {
+  int dist = getDistance();
+  Serial.println(dist);
 
-    // Open lid
-    dustbinServo.write(90);
-
-    delay(3000);
-
-    // Close lid
-    dustbinServo.write(0);
+  if (dist > 0 && dist < 20) {  // hand detected
+    Serial.println("Opening Lid");
+    myServo.write(90);          // open lid
+    delay(3000);                // wait 3 sec
+    Serial.println("Closing Lid");
+    myServo.write(0);           // close lid
   }
 
-  delay(200);
+  delay(500);
 }

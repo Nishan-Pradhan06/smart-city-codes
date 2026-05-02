@@ -18,7 +18,7 @@ class _CameraScreenState extends State<CameraScreen> {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..enableZoom(true)
-      ..loadRequest(Uri.parse('http://192.168.4.1'));
+      ..loadRequest(Uri.parse('http://192.168.4.1:81/stream'));
   }
 
   @override
