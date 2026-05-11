@@ -43,7 +43,7 @@ void loop() {
     endTime = millis();
     timeTaken = (endTime - startTime) / 1000.0;
 
-    if (timeTaken > 0) {
+    if (timeTaken > 0) {  
       speed = distance / timeTaken;
     }
 
