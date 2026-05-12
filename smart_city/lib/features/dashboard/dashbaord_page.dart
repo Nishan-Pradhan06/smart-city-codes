@@ -5,6 +5,7 @@ import 'package:smart_city/features/smart_parking/smart_parking_page.dart';
 import '../../core/widgets/app_bar.dart';
 import '../../core/widgets/service_tile.dart';
 import '../../core/widgets/stats_widget.dart';
+import '../traffic_light/traffic_light.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -156,6 +157,19 @@ class DashboardScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => CameraScreen()),
+                  );
+                },
+              ),
+              ServiceTile(
+                icon: Icons.wb_sunny_outlined,
+                title: 'Traffic Light',
+                subtitle: '123',
+                statusColor: const Color(0xFF29B6F6),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => TrafficLightScreen(),
+                    ),
                   );
                 },
               ),
